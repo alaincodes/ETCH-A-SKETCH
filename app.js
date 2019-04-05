@@ -12,7 +12,10 @@ ButtonReset.addEventListener('click', function() {
 })
 SuperContainer.appendChild(ButtonReset);
 
+<<<<<<< HEAD
 // Our main grid element appended to the ID root
+=======
+>>>>>>> 21e6d681627c7d99150ae00a83e4be0ed7ed7d66
 const Grid = document.createElement('div');
 Grid.classList.add('mainGrid');
 SuperContainer.appendChild(Grid);
