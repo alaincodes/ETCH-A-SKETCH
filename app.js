@@ -1,19 +1,33 @@
-
+// Main div element of our App with the ID root.
 const SuperContainer = document.getElementById('root');
+
+// BUTTON RESET SETUP
+const ButtonReset = document.createElement('button');
+ButtonReset.setAttribute('id', 'ButtonReset');
+ButtonReset.textContent = 'Reset';
+ButtonReset.addEventListener('click', function() {
+  removeGrid();
+  createGrid();
+  coloringSquare();
+})
+SuperContainer.appendChild(ButtonReset);
+
+// Our main grid element appended to the ID root
 const Grid = document.createElement('div');
 Grid.classList.add('mainGrid');
-
 SuperContainer.appendChild(Grid);
 
-function createGrid(num) {
-  let mySquare = document.createElement('div');
-  mySquare.classList.add('mySquare');
-  Grid.appendChild(mySquare);
-}
 
-for (let i = 0; i < 256; i++) {
-  createGrid(16)
+function createGrid() {
+  for (let i = 0; i < 256; i++) {
+    let mySquare = document.createElement('div');
+    mySquare.classList.add('mySquare');
+    Grid.appendChild(mySquare);
+  }
+  Grid.classList.add('mainGrid');
 }
+createGrid();
+
 
 function coloringSquare() {
   let drawing = document.querySelectorAll(".mySquare");
@@ -23,12 +37,20 @@ function coloringSquare() {
       });
   });
 }
-
 coloringSquare();
 
+
 function randomColors() {
-  let red = Math.floor(Math.random() * 256);
-  let green = Math.floor(Math.random() * 256);
-  let blue = Math.floor(Math.random() * 256);
-  return (`rgb( ${red}, ${green}, ${blue});`);
+  let red = Math.floor(Math.random() * 255);
+  let green = Math.floor(Math.random() * 255);
+  let blue = Math.floor(Math.random() * 255);
+  return (`rgb(${red}, ${green}, ${blue});`);
+}
+
+
+function removeGrid() {
+  var gridBox = document.querySelectorAll(".mySquare");
+  gridBox.forEach((div) => {
+      div.parentNode.removeChild(div);
+  });
 }
