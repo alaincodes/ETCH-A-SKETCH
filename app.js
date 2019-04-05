@@ -7,29 +7,40 @@ ButtonReset.setAttribute('id', 'ButtonReset');
 ButtonReset.textContent = 'Reset';
 ButtonReset.addEventListener('click', function() {
   removeGrid();
-  createGrid();
+  createGrid(16, 256);
   coloringSquare();
 })
 SuperContainer.appendChild(ButtonReset);
 
-<<<<<<< HEAD
+// BUTTON NEW PERSONNAL GRID
+const ButtonCreateGrid = document.createElement('button');
+ButtonCreateGrid.setAttribute('id', 'ButtonCreateGrid');
+ButtonCreateGrid.textContent = 'New Grid (Less than 100 please..)';
+ButtonCreateGrid.addEventListener('click', function() {
+  let userAnswer = prompt(`Enter number of Rows you want.`);
+  let gridTotal = userAnswer * userAnswer;
+  removeGrid();
+  createGrid(userAnswer, gridTotal);
+  coloringSquare();
+})
+SuperContainer.appendChild(ButtonCreateGrid);
+
 // Our main grid element appended to the ID root
-=======
->>>>>>> 21e6d681627c7d99150ae00a83e4be0ed7ed7d66
 const Grid = document.createElement('div');
 Grid.classList.add('mainGrid');
 SuperContainer.appendChild(Grid);
 
 
-function createGrid() {
-  for (let i = 0; i < 256; i++) {
+function createGrid(gridSize, gridTotal) {
+  for (let i = 0; i < gridTotal; i++) {
     let mySquare = document.createElement('div');
     mySquare.classList.add('mySquare');
     Grid.appendChild(mySquare);
+    Grid.classList.add('mainGrid');
+    Grid.setAttribute('style', `grid: repeat(${gridSize}, auto) / repeat(${gridSize}, auto)`);
   }
-  Grid.classList.add('mainGrid');
 }
-createGrid();
+createGrid(16, 256);
 
 
 function coloringSquare() {
